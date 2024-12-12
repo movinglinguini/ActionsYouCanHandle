@@ -28,6 +28,7 @@ updateWorld : Effects → World → World
 updateWorld []            w = w
 updateWorld ((+ , x) ∷ N) w = x ∷ updateWorld N w
 updateWorld ((- , x) ∷ N) w = remove x (updateWorld N w)
+updateWorld ((polvar y , x) ∷ N) w = w
 
 canonical-σ : Context → ActionHandler
 canonical-σ Γ α = updateWorld (effects (Γ α))

@@ -1,14 +1,19 @@
 open import Data.Product
 open import Data.List
+open import Data.Nat using (ℕ)
 
 module Plans.Domain.Core (Type : Set) (Action : Set) (Predicate : Set) where
 
+infix 20 polvar_
+
 data Polarity : Set where
   + - : Polarity
+  polvar_ : ℕ → Polarity
 
 neg : Polarity → Polarity
 neg + = -
 neg - = +
+neg (polvar x) = polvar x
 
 -- A pair containing a predicate and polarity
 PredMap : Set
